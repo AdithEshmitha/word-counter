@@ -1,11 +1,341 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
+	<main>
+		<h1>Word Counter</h1>
+		<p>Count words and characters instantly.</p>
+
+		<textarea
+			placeholder="Type or paste your text here..."
+			aria-label="Text to count"></textarea>
+
+		<button id="clear-button" type="button"> Clear Text </button>
+		<button id="copy-button" type="button"> Copy Text </button>
+
+		<div class="stats">
+			<div class="stat-card">
+				<span class="stat-label">Words</span>
+				<strong id="word-count">0</strong>
+			</div>
+
+			<div class="stat-card">
+				<span class="stat-label">Characters</span>
+				<strong id="character-count">0</strong>
+			</div>
+
+			<div class="stat-card">
+				<span class="stat-label">Characters (no spaces)</span>
+				<strong id="no-space-count">0</strong>
+			</div>
+
+			<div class="stat-card">
+				<span class="stat-label">Sentences</span>
+				<strong id="sentence-count">0</strong>
+			</div>
+
+			<div class="stat-card">
+				<span class="stat-label">Paragraphs</span>
+				<strong id="paragraph-count">0</strong>
+			</div>
+
+			<div class="stat-card">
+				<span class="stat-label">Reading Time</span>
+				<strong id="reading-time">0 min</strong>
+			</div>
+		</div>
+	</main>
 </Layout>
+
+<style>
+	main {
+		max-width: 900px;
+		margin: 64px auto;
+		padding: 0 24px;
+		text-align: center;
+		font-family: Arial, sans-serif;
+		color: #111827;
+	}
+
+	h1 {
+		font-size: clamp(32px, 5vw, 48px);
+		font-weight: 750;
+		letter-spacing: -1.5px;
+		margin-bottom: 12px;
+	}
+
+	p {
+		font-size: 18px;
+		line-height: 1.6;
+		color: #6b7280;
+	}
+
+	textarea {
+		display: block;
+		width: 100%;
+		min-height: 260px;
+		padding: 22px;
+		margin-top: 28px;
+		box-sizing: border-box;
+		border: 1px solid #e5e7eb;
+		border-radius: 16px;
+		background: #fff;
+		color: #111827;
+		font-family: Arial, sans-serif;
+		font-size: 16px;
+		line-height: 1.7;
+		resize: vertical;
+		outline: none;
+		transition:
+			border-color 0.2s,
+			box-shadow 0.2s;
+	}
+
+	textarea:focus {
+		border-color: #6366f1;
+		box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+	}
+
+	textarea::placeholder {
+		color: #9ca3af;
+	}
+
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 14px;
+		margin-top: 18px;
+		text-align: left;
+	}
+
+	.stat-card {
+		min-width: 0;
+		padding: 22px;
+		border: 1px solid #e5e7eb;
+		border-radius: 16px;
+		background: #fff;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+		transition:
+			border-color 0.2s,
+			transform 0.2s;
+	}
+
+	.stat-card:hover {
+		border-color: #c7d2fe;
+		transform: translateY(-2px);
+	}
+
+	.stat-label {
+		display: block;
+		margin-bottom: 10px;
+		color: #6b7280;
+		font-size: 14px;
+		line-height: 1.5;
+	}
+
+	.stat-card strong {
+		display: block;
+		color: #111827;
+		font-size: 30px;
+		font-weight: 700;
+		letter-spacing: -0.5px;
+		overflow-wrap: anywhere;
+	}
+
+	#clear-button,
+	#copy-button {
+		margin-top: 16px;
+		padding: 12px 20px;
+		border: 1px solid #e5e7eb;
+		border-radius: 10px;
+		background: #fff;
+		color: #111827;
+		font-size: 14px;
+		font-weight: 600;
+		cursor: pointer;
+		transition:
+			background 0.2s,
+			border-color 0.2s;
+	}
+
+	#clear-button:hover,
+	#copy-button:hover {
+		background: #f9fafb;
+		border-color: #c7d2fe;
+	}
+
+	#clear-button:focus-visible,
+	#copy-button:focus-visible {
+		outline: 2px solid #6366f1;
+		outline-offset: 3px;
+	}
+
+	#copy-button {
+		margin-left: 8px;
+		background: #111827;
+		color: #fff;
+		border-color: #111827;
+	}
+
+	#copy-button:hover {
+		background: #374151;
+		border-color: #374151;
+	}
+
+	@media (max-width: 600px) {
+		main {
+			margin: 36px auto;
+			padding: 0 16px;
+		}
+
+		h1 {
+			letter-spacing: -1px;
+		}
+
+		p {
+			font-size: 16px;
+		}
+
+		textarea {
+			min-height: 220px;
+			padding: 16px;
+		}
+
+		.stats {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 10px;
+		}
+
+		.stat-card {
+			padding: 16px;
+		}
+
+		.stat-card strong {
+			font-size: 25px;
+		}
+	}
+
+	@media (max-width: 360px) {
+		.stats {
+			grid-template-columns: 1fr;
+		}
+
+		#clear-button,
+		#copy-button {
+			margin-left: 0;
+			margin-right: 4px;
+		}
+	}
+</style>
+
+<script>
+	const textarea = document.querySelector<HTMLTextAreaElement>("textarea");
+	const wordCount = document.querySelector<HTMLElement>("#word-count");
+	const characterCount =
+		document.querySelector<HTMLElement>("#character-count");
+	const noSpaceCount = document.querySelector<HTMLElement>("#no-space-count");
+	const sentenceCount =
+		document.querySelector<HTMLElement>("#sentence-count");
+	const paragraphCount =
+		document.querySelector<HTMLElement>("#paragraph-count");
+	const readingTime = document.querySelector<HTMLElement>("#reading-time");
+
+	if (
+		!textarea ||
+		!wordCount ||
+		!characterCount ||
+		!noSpaceCount ||
+		!sentenceCount ||
+		!paragraphCount ||
+		!readingTime
+	) {
+		throw new Error("Word Counter elements could not be found.");
+	}
+
+	function updateCounts() {
+		if (!textarea) return;
+		if (!characterCount) return;
+		if (!wordCount) return;
+		if (!noSpaceCount) return;
+		if (!sentenceCount) return;
+		if (!paragraphCount) return;
+		if (!readingTime) return;
+
+		const text = textarea.value;
+
+		const trimmedText = text.trim();
+
+		const words = trimmedText ? trimmedText.split(/\s+/).length : 0;
+
+		wordCount.textContent = words.toLocaleString();
+		characterCount.textContent = text.length.toLocaleString();
+		noSpaceCount.textContent = text
+			.replace(/\s/g, "")
+			.length.toLocaleString();
+
+		const sentences = trimmedText
+			? trimmedText
+					.split(/[.!?]+/)
+					.filter((sentence) => sentence.trim().length > 0).length
+			: 0;
+
+		sentenceCount.textContent = sentences.toLocaleString();
+
+		const paragraphs = trimmedText
+			? trimmedText
+					.split(/\n\s*\n/)
+					.filter((paragraph) => paragraph.trim().length > 0).length
+			: 0;
+
+		paragraphCount.textContent = paragraphs.toLocaleString();
+
+		const readingMinutes = words / 200;
+
+		if (readingMinutes < 1 && words > 0) {
+			readingTime.textContent = "< 1 min";
+		} else {
+			readingTime.textContent = `${Math.ceil(readingMinutes)} min`;
+		}
+	}
+
+	if (textarea) {
+		textarea.addEventListener("input", updateCounts);
+	}
+	updateCounts();
+
+	const clearButton =
+		document.querySelector<HTMLButtonElement>("#clear-button");
+
+	const copyButton =
+		document.querySelector<HTMLButtonElement>("#copy-button");
+
+	if (clearButton) {
+		clearButton.addEventListener("click", () => {
+			textarea.value = "";
+			updateCounts();
+			textarea.focus();
+		});
+	}
+
+	if (copyButton) {
+		copyButton.addEventListener("click", async () => {
+			if (!textarea.value) {
+				return;
+			}
+
+			try {
+				await navigator.clipboard.writeText(textarea.value);
+
+				copyButton.textContent = "Copied!";
+
+				setTimeout(() => {
+					copyButton.textContent = "Copy Text";
+				}, 2000);
+			} catch (error) {
+				console.error("Could not copy text:", error);
+				alert("Copy failed. Please copy the text manually.");
+			}
+		});
+	}
+</script>
