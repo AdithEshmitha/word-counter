@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wordix-lilac.vercel.app/sitemap-index.xml
