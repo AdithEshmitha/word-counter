@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import SlugGenerator from "../components/SlugGenerator";
+import Footer from "../components/Footer";
 ---
 
 <Layout
@@ -14,4 +15,5 @@ import SlugGenerator from "../components/SlugGenerator";
     <main class="min-h-screen bg-white text-[#111827]">
         <SlugGenerator client:load />
     </main>
+    <Footer />
 </Layout>

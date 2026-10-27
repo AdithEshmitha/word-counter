@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import CharacterCounter from "../components/CharacterCounter";
+import Footer from "../components/Footer";
+---
+
+<Layout
+    title="Free Character Counter Online - Count Characters With Spaces | Wordix"
+    description="Count characters with or without spaces using Wordix's free online character counter. Instantly count words, sentences, paragraphs, and lines. No account required."
+    canonicalURL="https://wordix-lilac.vercel.app/character-counter/"
+>
+    <Navbar client:load />
+
+    <main class="min-h-screen bg-white text-[#111827]">
+        <CharacterCounter client:load />
+    </main>
+    <Footer />
+</Layout>

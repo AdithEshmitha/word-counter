@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import RemoveExtraSpaces from "../components/RemoveExtraSpaces";
+import Footer from "../components/Footer";
+---
+
+<Layout
+    title="Remove Extra Spaces from Text Online - Free Whitespace Remover | Wordix"
+    description="Remove extra spaces, tabs, and blank lines from text with Wordix's free whitespace remover. Clean up text instantly, preserve normal word spacing, and copy the result."
+    canonicalURL="https://wordix-lilac.vercel.app/remove-extra-spaces/"
+>
+    <Navbar client:load />
+
+    <main class="min-h-screen bg-white text-[#111827]">
+        <RemoveExtraSpaces client:load />
+    </main>
+    <Footer />
+</Layout>
