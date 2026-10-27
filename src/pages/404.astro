@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+---
+
+<Layout
+    title="Page Not Found (404) | Wordix"
+    description="The page you are looking for could not be found. Return to Wordix and explore our free online text tools."
+    canonicalURL="https://wordix-lilac.vercel.app/404/"
+>
+    <Navbar client:load />
+
+    <main
+        class="flex min-h-[65vh] items-center justify-center bg-white px-5 py-16 text-[#111827]"
+    >
+        <section class="mx-auto w-full max-w-xl text-center">
+            <p
+                class="text-sm font-semibold uppercase tracking-[0.2em] text-[#111827]/50"
+            >
+                Error 404
+            </p>
+
+            <h1
+                style="font-size: 120px; line-height: 1; font-weight: 700; letter-spacing: -0.04em; margin-top: 1.25rem;"
+            >
+                404
+            </h1>
+
+            <h2 class="mt-5 text-2xl font-bold tracking-tight sm:text-3xl">
+                This page doesn't exist.
+            </h2>
+
+            <p
+                class="mx-auto mt-4 max-w-md text-base leading-7 text-[#111827]/65"
+            >
+                The page you are looking for may have been moved, deleted, or
+                the address may be incorrect. Let's help you find what you need.
+            </p>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-3">
+                <a
+                    href="/"
+                    class="inline-flex items-center justify-center rounded-lg bg-[#111827] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#111827]/85"
+                >
+                    Back to Home
+                </a>
+
+                <a
+                    href="/#tools"
+                    class="inline-flex items-center justify-center rounded-lg border border-[#111827]/15 px-5 py-3 text-sm font-semibold transition hover:bg-[#111827]/5"
+                >
+                    Explore Text Tools
+                </a>
+            </div>
+
+            <div class="mt-12 border-t border-[#111827]/10 pt-7">
+                <p class="text-sm font-semibold">Popular text tools</p>
+
+                <div class="mt-4 flex flex-wrap justify-center gap-5 gap-y-3">
+                    <a
+                        href="/character-counter/"
+                        class="text-sm text-[#111827]/65 underline-offset-4 hover:text-[#111827] hover:underline"
+                    >
+                        Character Counter
+                    </a>
+
+                    <a
+                        href="/case-converter/"
+                        class="text-sm text-[#111827]/65 underline-offset-4 hover:text-[#111827] hover:underline"
+                    >
+                        Case Converter
+                    </a>
+
+                    <a
+                        href="/remove-extra-spaces/"
+                        class="text-sm text-[#111827]/65 underline-offset-4 hover:text-[#111827] hover:underline"
+                    >
+                        Remove Extra Spaces
+                    </a>
+
+                    <a
+                        href="/slug-generator/"
+                        class="text-sm text-[#111827]/65 underline-offset-4 hover:text-[#111827] hover:underline"
+                    >
+                        Slug Generator
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</Layout>
