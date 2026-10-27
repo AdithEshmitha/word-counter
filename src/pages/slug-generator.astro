@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import SlugGenerator from "../components/SlugGenerator";
+---
+
+<Layout
+    title="Free Slug Generator - Create SEO-Friendly URLs | Wordix"
+    description="Create clean, SEO-friendly URL slugs from titles and text with Wordix's free slug generator. Customize separators, remove numbers, and copy slugs instantly."
+    canonicalURL="https://wordix-lilac.vercel.app/slug-generator/"
+>
+    <Navbar client:load />
+
+    <main class="min-h-screen bg-white text-[#111827]">
+        <SlugGenerator client:load />
+    </main>
+</Layout>
