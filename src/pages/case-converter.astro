@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import CaseConverter from "../components/CaseConverter";
+---
+
+<Layout
+    title="Free Case Converter - Uppercase, Lowercase & Title Case | Wordix"
+    description="Convert text to uppercase, lowercase, Title Case, sentence case, and Toggle Case with Wordix's free online case converter. Fast, simple, and easy to use."
+    canonicalURL="https://wordix-lilac.vercel.app/case-converter/"
+>
+    <Navbar client:load />
+    <main class="min-h-screen bg-white text-[#111827]">
+        <CaseConverter client:load />
+    </main>
+</Layout>
